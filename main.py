@@ -85,6 +85,7 @@ class Runthread(QtCore.QThread):
                 if file == files[0]:
                     sheetnames = pd.read_excel(file_path, sheet_name=None).keys()
 
+
         for this_sheetname in sheetnames:
             self._signal.emit('开始合并sheet “' + this_sheetname + '”sheet \n')
 
