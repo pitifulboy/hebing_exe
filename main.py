@@ -74,6 +74,7 @@ class Runthread(QtCore.QThread):
         self._signal.emit('合并完成，耗时' + format(times) + '秒' + '\n')
 
     def run_xlsx(self):
+
         start_time = time.time()
         dir = self.folderpath
         DFs = []  # 新建列表，存放每个文件数据框（每一个excel读取后存放在数据框,依次读取多个相同结构的Excel文件并创建DataFrame）
@@ -84,7 +85,6 @@ class Runthread(QtCore.QThread):
                 file_path = os.path.join(root, file)  # 文件夹中，没有子文件夹，用当前文件夹和文件名组合成一个完整路径
                 if file == files[0]:
                     sheetnames = pd.read_excel(file_path, sheet_name=None).keys()
-
 
         for this_sheetname in sheetnames:
             self._signal.emit('开始合并sheet “' + this_sheetname + '”sheet \n')
